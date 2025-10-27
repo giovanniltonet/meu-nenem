@@ -161,11 +161,15 @@
     function startMemories() {
       intro.style.opacity = "0";
       intro.style.visibility = "hidden";
-      setTimeout(() => {
-        intro.style.display = "none";
-        gallery.style.display = "block";
-        music.play();
-      }, 1000);
+     setTimeout(() => {
+  intro.style.display = "none";
+  gallery.style.display = "block";
+  music.currentTime = 0;
+  music.play().catch(() => {
+    toggleBtn.textContent = "▶️ Tocar Música";
+  });
+}, 1000);
+
     }
 
     toggleBtn.addEventListener('click', () => {
