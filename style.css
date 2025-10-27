@@ -1,8 +1,11 @@
+/* --- ESTILO GERAL --- */
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ffe6ea, #f7d1d8);
+  background: linear-gradient(135deg, #fff0f3, #ffe6eb);
   color: #4a1f2f;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 /* --- INTRODUÇÃO --- */
@@ -10,95 +13,134 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100vh;
-  background: linear-gradient(135deg, #ffd9df, #ffeef1);
+  background: linear-gradient(135deg, #ffd9df, #fff1f4);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 10;
   transition: opacity 1s ease, visibility 1s ease;
+  animation: softFade 1.5s ease-in-out;
 }
 
 #intro h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: #a83e58;
   margin-bottom: 1rem;
+  text-shadow: 0 3px 10px rgba(168, 62, 88, 0.2);
+  animation: fadeSlide 1s ease-in-out;
 }
 
 #intro p {
   color: #6b2f42;
   font-size: 1.2rem;
   margin-bottom: 2rem;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.6;
 }
 
 #intro button {
-  background-color: #a83e58;
+  background: linear-gradient(135deg, #a83e58, #c05a77);
   color: white;
   border: none;
-  padding: 12px 30px;
-  border-radius: 30px;
+  padding: 14px 36px;
+  border-radius: 40px;
   font-weight: 600;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  font-size: 1.1rem;
+  box-shadow: 0 5px 15px rgba(168, 62, 88, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #intro button:hover {
-  background-color: #c0526d;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(168, 62, 88, 0.4);
+  background: linear-gradient(135deg, #c0526d, #de748d);
 }
 
 /* --- POLAROID --- */
 .polaroid {
   background-color: #fff;
   color: #333;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 12px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.polaroid::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.polaroid:hover::before {
+  opacity: 1;
 }
 
 .polaroid:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .polaroid img {
   width: 100%;
-  border-radius: 6px;
+  border-radius: 10px;
   margin-bottom: 8px;
+  filter: brightness(0.95);
+  transition: filter 0.3s ease;
+}
+
+.polaroid:hover img {
+  filter: brightness(1);
 }
 
 .caption {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
   text-align: center;
+  color: #5a2638;
 }
 
+/* --- BOTÃO DE MÚSICA --- */
 .audio-btn {
-  background-color: #a83e58;
+  background: linear-gradient(135deg, #a83e58, #c05a77);
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 28px;
   border-radius: 30px;
   font-weight: 600;
-  transition: 0.3s;
+  font-size: 1rem;
+  transition: all 0.3s ease;
   margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(168, 62, 88, 0.25);
 }
 
 .audio-btn:hover {
-  background-color: #c0526d;
+  background: linear-gradient(135deg, #c0526d, #de748d);
+  transform: scale(1.05);
 }
 
+/* --- GALERIA --- */
 .photo-container {
-  max-width: 230px;
+  max-width: 240px;
   margin: auto;
 }
 
 .fade-in {
   opacity: 0;
   transform: translateY(15px);
-  animation: fadeIn 1s forwards;
+  animation: fadeIn 1.2s forwards;
 }
 
+/* --- ANIMAÇÕES --- */
 @keyframes fadeIn {
   to {
     opacity: 1;
@@ -106,16 +148,37 @@ body {
   }
 }
 
-/* Ocultar galeria até apertar o botão */
-#gallery {
-  display: none;
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* --- MODO SMARTPHONE --- */
+@keyframes softFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- ESCONDER GALERIA ATÉ O CLIQUE --- */
+#gallery {
+  display: none;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 576px) {
   .photo-container {
     max-width: 100%;
-    margin: 0 auto 25px auto; /* espaçamento inferior entre as fotos */
+    margin: 0 auto 25px auto;
   }
 
   .col-6 {
@@ -146,6 +209,6 @@ body {
   }
 
   .row {
-    margin: 0; /* remove margens laterais extras */
+    margin: 0;
   }
 }
