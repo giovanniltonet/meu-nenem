@@ -1,12 +1,13 @@
 /* --- ESTILO GERAL --- */
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top left, #fff5f7, #ffdce4, #ffc6d1);
+  background: radial-gradient(circle at top left, #fff1f6, #ffd2e0, #ffb6c9);
   color: #3f1c2c;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  animation: dreamyFade 1.2s ease-in-out;
 }
 
 /* --- INTRODUÇÃO --- */
@@ -14,24 +15,24 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100vh;
-  background: radial-gradient(circle at bottom right, #ffe5ec, #ffcfd9);
+  background: radial-gradient(circle at bottom right, #ffe1eb, #ffc2d1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 10;
   transition: opacity 1s ease, visibility 1s ease;
-  box-shadow: inset 0 0 180px rgba(255, 200, 210, 0.35);
-  animation: softFade 1.5s ease-in-out;
-  backdrop-filter: blur(4px);
+  box-shadow: inset 0 0 180px rgba(255, 170, 190, 0.4);
+  animation: softGlow 2s ease-in-out;
+  backdrop-filter: blur(6px);
 }
 
 #intro h1 {
-  font-size: 3rem;
-  color: #9b294b;
+  font-size: 3.2rem;
+  color: #b02e55;
   margin-bottom: 1rem;
-  letter-spacing: 1.2px;
-  text-shadow: 0 4px 18px rgba(155, 41, 75, 0.25);
+  letter-spacing: 1.5px;
+  text-shadow: 0 6px 20px rgba(176, 46, 85, 0.3), 0 0 30px rgba(255, 180, 200, 0.6);
 }
 
 #intro p {
@@ -39,40 +40,42 @@ body {
   font-size: 1.2rem;
   margin-bottom: 2rem;
   text-align: center;
-  max-width: 75%;
-  line-height: 1.7;
+  max-width: 70%;
+  line-height: 1.8;
   font-weight: 400;
+  text-shadow: 0 1px 6px rgba(255, 200, 210, 0.6);
 }
 
 #intro button {
-  background: linear-gradient(135deg, #a33c57, #c85e7b);
+  background: linear-gradient(135deg, #b73764, #f06a8a);
   color: #fff;
   border: none;
-  padding: 15px 38px;
+  padding: 16px 42px;
   border-radius: 50px;
   font-weight: 600;
   font-size: 1.1rem;
-  box-shadow: 0 8px 22px rgba(163, 60, 87, 0.35);
+  box-shadow: 0 8px 24px rgba(240, 106, 138, 0.4);
   cursor: pointer;
   transition: all 0.35s ease;
 }
 
 #intro button:hover {
-  transform: translateY(-4px);
-  background: linear-gradient(135deg, #c2526e, #e37f9e);
-  box-shadow: 0 12px 28px rgba(194, 82, 109, 0.45);
+  transform: translateY(-5px) scale(1.03);
+  background: linear-gradient(135deg, #f06a8a, #ff9fb7);
+  box-shadow: 0 14px 32px rgba(255, 150, 180, 0.5);
 }
 
 /* --- POLAROID --- */
 .polaroid {
   background-color: #fff;
   color: #333;
-  padding: 12px;
-  border-radius: 15px;
-  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+  padding: 14px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 28px rgba(255, 180, 195, 0.4);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   position: relative;
   overflow: hidden;
+  border: 2px solid rgba(255, 180, 195, 0.4);
 }
 
 .polaroid::before {
@@ -80,7 +83,7 @@ body {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: radial-gradient(circle at top left, rgba(255,255,255,0.6), transparent);
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -90,66 +93,67 @@ body {
 }
 
 .polaroid:hover {
-  transform: scale(1.05) rotate(-1deg);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  transform: scale(1.06) rotate(-1deg);
+  box-shadow: 0 14px 35px rgba(255, 140, 170, 0.5);
 }
 
 .polaroid img {
   width: 100%;
-  border-radius: 10px;
-  margin-bottom: 8px;
-  filter: brightness(0.95);
-  transition: filter 0.3s ease;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  filter: brightness(0.97) saturate(1.05);
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .polaroid:hover img {
-  filter: brightness(1);
+  filter: brightness(1.05) saturate(1.1);
+  transform: scale(1.02);
 }
+
 .caption {
   font-size: 1rem;
   font-weight: 500;
   text-align: center;
-  color: #511c30;
-  text-shadow: 0 2px 5px rgba(255, 180, 200, 0.8);
+  color: #651c3a;
+  text-shadow: 0 2px 8px rgba(255, 180, 200, 0.9);
 }
-
 
 /* --- GALERIA --- */
 #gallery {
   display: none;
-  background: radial-gradient(circle at center, #fff0f4, #ffd7e0);
-  padding: 60px 0;
+  background: radial-gradient(circle at center, #fff0f5, #ffc9d8, #ffafc1);
+  padding: 70px 0;
   animation: fadeIn 1.3s ease forwards;
   box-shadow: inset 0 0 100px rgba(255, 182, 193, 0.25);
 }
 
 h2 {
-  color: #95284a;
-  font-size: 2.2rem;
+  color: #b52c56;
+  font-size: 2.3rem;
   font-weight: 600;
   text-align: center;
   margin-bottom: 2rem;
-  text-shadow: 0 4px 14px rgba(160, 47, 83, 0.25);
+  text-shadow: 0 4px 20px rgba(180, 60, 90, 0.3);
 }
 
 /* --- BOTÃO DE MÚSICA --- */
 .audio-btn {
-  background: linear-gradient(135deg, #a33c57, #c85e7b);
+  background: linear-gradient(135deg, #b73764, #f06a8a);
   color: white;
   border: none;
-  padding: 13px 30px;
-  border-radius: 40px;
+  padding: 14px 34px;
+  border-radius: 45px;
   font-weight: 600;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
   margin-bottom: 35px;
-  box-shadow: 0 6px 18px rgba(163, 60, 87, 0.3);
+  box-shadow: 0 8px 20px rgba(240, 106, 138, 0.4);
 }
 
 .audio-btn:hover {
-  background: linear-gradient(135deg, #c2526e, #e37f9e);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(194, 82, 109, 0.45);
+  background: linear-gradient(135deg, #f06a8a, #ff9fb7);
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(255, 150, 180, 0.5);
 }
 
 /* --- ANIMAÇÕES --- */
@@ -166,9 +170,14 @@ h2 {
   }
 }
 
-@keyframes softFade {
+@keyframes dreamyFade {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes softGlow {
+  0% { opacity: 0; transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 /* --- RESPONSIVIDADE --- */
@@ -198,11 +207,11 @@ h2 {
   }
 
   h2 {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
   }
 
   .audio-btn {
-    padding: 12px 26px;
+    padding: 12px 28px;
   }
 
   .row {
