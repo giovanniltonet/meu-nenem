@@ -110,3 +110,42 @@ body {
 #gallery {
   display: none;
 }
+
+/* --- MODO SMARTPHONE --- */
+@media (max-width: 576px) {
+  .photo-container {
+    max-width: 100%;
+    margin: 0 auto 25px auto; /* espaçamento inferior entre as fotos */
+  }
+
+  .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .polaroid {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .polaroid img {
+    border-radius: 12px;
+  }
+
+  .caption {
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .audio-btn {
+    padding: 12px 25px;
+  }
+
+  .row {
+    margin: 0; /* remove margens laterais extras */
+  }
+}
