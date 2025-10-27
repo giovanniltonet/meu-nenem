@@ -1,0 +1,112 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffe6ea, #f7d1d8);
+  color: #4a1f2f;
+  overflow-x: hidden;
+}
+
+/* --- INTRODUÇÃO --- */
+#intro {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  background: linear-gradient(135deg, #ffd9df, #ffeef1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#intro h1 {
+  font-size: 2.5rem;
+  color: #a83e58;
+  margin-bottom: 1rem;
+}
+
+#intro p {
+  color: #6b2f42;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+#intro button {
+  background-color: #a83e58;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+#intro button:hover {
+  background-color: #c0526d;
+}
+
+/* --- POLAROID --- */
+.polaroid {
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.polaroid:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.polaroid img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.caption {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.audio-btn {
+  background-color: #a83e58;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-bottom: 30px;
+}
+
+.audio-btn:hover {
+  background-color: #c0526d;
+}
+
+.photo-container {
+  max-width: 230px;
+  margin: auto;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ocultar galeria até apertar o botão */
+#gallery {
+  display: none;
+}
