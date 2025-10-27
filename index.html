@@ -18,8 +18,6 @@
 
 
   <section id="gallery" class="container py-5 text-center">
-    <button id="toggleBtn" class="audio-btn" style="display:none;">⏸️ Pausar Música</button>
-
     <h2 class="fw-bold mb-4">💞 Nossos Momentos 💞</h2>
 
 
@@ -155,49 +153,35 @@
   </section>
 
 <script>
-const music = document.getElementById("background-music");
-const toggleBtn = document.getElementById("toggle-music");
-const startBtn = document.getElementById("startBtn");
-const intro = document.querySelector(".intro");
-const gallery = document.querySelector(".gallery");
+    const intro = document.getElementById('intro');
+    const gallery = document.getElementById('gallery');
+    const music = document.getElementById('music');
+    const toggleBtn = document.getElementById('toggleBtn');
 
-let isPlaying = false;
-
-// Botão principal (inicia música e transição)
-startBtn.addEventListener("click", async () => {
-  try {
-    await music.play(); // tenta tocar no clique (autorizado no iPhone)
-    isPlaying = true;
-    toggleBtn.textContent = "⏸️ Pausar Música";
-
-    // Espera a música iniciar antes de mudar de tela
-    setTimeout(() => {
-      intro.style.display = "none";
-      gallery.style.display = "block";
-    }, 800);
-  } catch (error) {
-    console.log("Erro ao tentar tocar música:", error);
+    function startMemories() {
+      intro.style.opacity = "0";
+      intro.style.visibility = "hidden";
+     setTimeout(() => {
+  intro.style.display = "none";
+  gallery.style.display = "block";
+  music.currentTime = 0;
+  music.play().catch(() => {
     toggleBtn.textContent = "▶️ Tocar Música";
-  }
-});
+  });
+}, 1000);
 
-// Botão de alternância (play/pause)
-toggleBtn.addEventListener("click", async () => {
-  if (isPlaying) {
-    music.pause();
-    isPlaying = false;
-    toggleBtn.textContent = "▶️ Tocar Música";
-  } else {
-    try {
-      await music.play();
-      isPlaying = true;
-      toggleBtn.textContent = "⏸️ Pausar Música";
-    } catch (error) {
-      console.log("Erro ao tentar tocar novamente:", error);
     }
-  }
-});
-</script>
+
+    toggleBtn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        toggleBtn.textContent = "⏸️ Pausar Música";
+      } else {
+        music.pause();
+        toggleBtn.textContent = "▶️ Tocar Música";
+      }
+    });
+  </script>
 
 
 
