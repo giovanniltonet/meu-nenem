@@ -155,47 +155,50 @@
   </section>
 
 <script>
-  const intro = document.getElementById('intro');
-  const gallery = document.getElementById('gallery');
-  const music = document.getElementById('music');
-  const toggleBtn = document.getElementById('toggleBtn');
+const music = document.getElementById("background-music");
+const toggleBtn = document.getElementById("toggle-music");
+const startBtn = document.getElementById("startBtn");
+const intro = document.querySelector(".intro");
+const gallery = document.querySelector(".gallery");
 
-  // Garante que a galeria comece oculta
-  gallery.style.display = "none";
+let isPlaying = false;
 
-  function startMemories() {
-    // tenta iniciar o áudio imediatamente no clique
-    music.play()
-      .then(() => {
-        toggleBtn.textContent = "⏸️ Pausar Música";
-      })
-      .catch(() => {
-        // se não tocar, exibe o botão manual
-        toggleBtn.style.display = "inline-block";
-        toggleBtn.textContent = "▶️ Tocar Música";
-      });
+// Botão principal (inicia música e transição)
+startBtn.addEventListener("click", async () => {
+  try {
+    await music.play(); // tenta tocar no clique (autorizado no iPhone)
+    isPlaying = true;
+    toggleBtn.textContent = "⏸️ Pausar Música";
 
-    // Transição visual
-    intro.style.transition = "opacity 1s ease";
-    intro.style.opacity = "0";
-
+    // Espera a música iniciar antes de mudar de tela
     setTimeout(() => {
       intro.style.display = "none";
       gallery.style.display = "block";
-    }, 1000);
+    }, 800);
+  } catch (error) {
+    console.log("Erro ao tentar tocar música:", error);
+    toggleBtn.textContent = "▶️ Tocar Música";
   }
+});
 
-  toggleBtn.addEventListener('click', () => {
-    if (music.paused) {
-      music.play()
-        .then(() => toggleBtn.textContent = "⏸️ Pausar Música")
-        .catch(() => alert("Ative o som no seu aparelho 🎧"));
-    } else {
-      music.pause();
-      toggleBtn.textContent = "▶️ Tocar Música";
+// Botão de alternância (play/pause)
+toggleBtn.addEventListener("click", async () => {
+  if (isPlaying) {
+    music.pause();
+    isPlaying = false;
+    toggleBtn.textContent = "▶️ Tocar Música";
+  } else {
+    try {
+      await music.play();
+      isPlaying = true;
+      toggleBtn.textContent = "⏸️ Pausar Música";
+    } catch (error) {
+      console.log("Erro ao tentar tocar novamente:", error);
     }
-  });
+  }
+});
 </script>
+
 
 
 </body>
