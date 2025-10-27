@@ -18,6 +18,8 @@
 
 
   <section id="gallery" class="container py-5 text-center">
+    <button id="toggleBtn" class="audio-btn" style="display:none;">⏸️ Pausar Música</button>
+
     <h2 class="fw-bold mb-4">💞 Nossos Momentos 💞</h2>
 
 
@@ -152,29 +154,30 @@
     </div>
   </section>
 
- <script>
+<script>
   const intro = document.getElementById('intro');
   const gallery = document.getElementById('gallery');
   const music = document.getElementById('music');
   const toggleBtn = document.getElementById('toggleBtn');
 
+  // Garante que a galeria comece oculta
+  gallery.style.display = "none";
+
   function startMemories() {
-    // Tenta iniciar a música imediatamente — essencial para iOS
-    const playPromise = music.play();
+    // tenta iniciar o áudio imediatamente no clique
+    music.play()
+      .then(() => {
+        toggleBtn.textContent = "⏸️ Pausar Música";
+      })
+      .catch(() => {
+        // se não tocar, exibe o botão manual
+        toggleBtn.style.display = "inline-block";
+        toggleBtn.textContent = "▶️ Tocar Música";
+      });
 
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          toggleBtn.textContent = "⏸️ Pausar Música";
-        })
-        .catch(() => {
-          toggleBtn.textContent = "▶️ Tocar Música";
-        });
-    }
-
-    // Transição visual (após a tentativa de tocar a música)
+    // Transição visual
+    intro.style.transition = "opacity 1s ease";
     intro.style.opacity = "0";
-    intro.style.visibility = "hidden";
 
     setTimeout(() => {
       intro.style.display = "none";
@@ -184,14 +187,16 @@
 
   toggleBtn.addEventListener('click', () => {
     if (music.paused) {
-      music.play();
-      toggleBtn.textContent = "⏸️ Pausar Música";
+      music.play()
+        .then(() => toggleBtn.textContent = "⏸️ Pausar Música")
+        .catch(() => alert("Ative o som no seu aparelho 🎧"));
     } else {
       music.pause();
       toggleBtn.textContent = "▶️ Tocar Música";
     }
   });
 </script>
+
 
 </body>
 </html>
